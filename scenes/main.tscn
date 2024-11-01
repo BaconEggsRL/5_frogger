@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvfhnbnxq8ukp"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_esch7"]
+[ext_resource type="PackedScene" uid="uid://gw1nob7xyb6f" path="res://window_control.tscn" id="2_gm5tw"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_esch7")
+
+[node name="window_control" parent="." instance=ExtResource("2_gm5tw")]
+offset_right = 960.0
+offset_bottom = 960.0
+
+[node name="GridContainer" type="GridContainer" parent="window_control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -198.0
+offset_top = -59.0
+offset_right = 198.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="window_control/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "FROGGER"
+
+[node name="PlayBtn" type="Button" parent="window_control/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 71
+text = "PLAY"
+
+[connection signal="pressed" from="window_control/GridContainer/PlayBtn" to="." method="_on_play_btn_pressed"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://52mefugqmusp"]
+
+[ext_resource type="Script" path="res://global/global.gd" id="1_gr3b3"]
+[ext_resource type="AudioStream" uid="uid://b666ebdo8jwgi" path="res://sounds/jump1.wav" id="2_3aas1"]
+
+[node name="global" type="Node"]
+script = ExtResource("1_gr3b3")
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="music" type="AudioStreamPlayer" parent="sounds"]
+
+[node name="jump" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("2_3aas1")
+
+[node name="SoundDelayTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

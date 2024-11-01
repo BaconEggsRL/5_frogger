@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://52mefugqmusp"]
+
+[ext_resource type="Script" path="res://global/global.gd" id="1_gr3b3"]
+[ext_resource type="AudioStream" uid="uid://bgngogeah1xc0" path="res://sounds/knife_stab.wav" id="2_715i2"]
+[ext_resource type="AudioStream" uid="uid://cbhufwrvgxj3x" path="res://sounds/Ragdoll Avalanche 2(V2).mp3" id="2_auxkr"]
+[ext_resource type="AudioStream" uid="uid://y1nm0s4y6reh" path="res://sounds/button.wav" id="8_k3w67"]
+
+[node name="global" type="Node"]
+script = ExtResource("1_gr3b3")
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="music" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("2_auxkr")
+bus = &"music"
+
+[node name="slice" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("2_715i2")
+bus = &"sfx"
+
+[node name="button" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("8_k3w67")
+bus = &"sfx"
