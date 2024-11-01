@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://0lpttllxeuh3"]
+[gd_scene load_steps=12 format=4 uid="uid://0lpttllxeuh3"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_clgxj"]
 [ext_resource type="Texture2D" uid="uid://wj474bpviun6" path="res://assets/tileset.png" id="2_f2uae"]
-[ext_resource type="PackedScene" uid="uid://cy76x45pwqyua" path="res://scenes/player.tscn" id="3_cfqrj"]
 [ext_resource type="PackedScene" uid="uid://couheins3dn8a" path="res://scenes/car.tscn" id="3_yhw6c"]
-[ext_resource type="PackedScene" uid="uid://gw1nob7xyb6f" path="res://scenes/window_control.tscn" id="5_k5jsb"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="4_rvp5v"]
+[ext_resource type="Texture2D" uid="uid://btfofglopimkg" path="res://assets/reticle.png" id="5_lsjpk"]
+[ext_resource type="Texture2D" uid="uid://d2dvgx88rpisc" path="res://assets/player_sheet.png" id="6_3v4jb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pmrqq"]
 texture = ExtResource("2_f2uae")
@@ -216,7 +217,6 @@ texture_region_size = Vector2i(64, 64)
 21:8/0 = 0
 0:9/0 = 0
 0:9/0/custom_data_0 = true
-0:9/0/custom_data_1 = true
 1:9/0 = 0
 2:9/0 = 0
 3:9/0 = 0
@@ -289,11 +289,34 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 custom_data_layer_0/name = "walkable"
 custom_data_layer_0/type = 1
-custom_data_layer_1/name = "lilypad"
-custom_data_layer_1/type = 1
-custom_data_layer_2/name = "full"
-custom_data_layer_2/type = 1
 sources/0 = SubResource("TileSetAtlasSource_pmrqq")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2l6g"]
+atlas = ExtResource("6_3v4jb")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i3oh"]
+atlas = ExtResource("6_3v4jb")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jm2j6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2l6g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i3oh")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_clgxj")
@@ -307,7 +330,6 @@ tile_set = SubResource("TileSet_aixbo")
 [node name="lane_1" type="Node2D" parent="lanes"]
 
 [node name="car" parent="lanes/lane_1" instance=ExtResource("3_yhw6c")]
-position = Vector2(544, 736)
 
 [node name="car2" parent="lanes/lane_1" instance=ExtResource("3_yhw6c")]
 position = Vector2(800, 736)
@@ -315,87 +337,20 @@ position = Vector2(800, 736)
 [node name="car3" parent="lanes/lane_1" instance=ExtResource("3_yhw6c")]
 position = Vector2(288, 736)
 
-[node name="player" parent="." node_paths=PackedStringArray("score_label", "lives_container", "frog_sprite_container", "gameover_container", "win_container", "tilemap") instance=ExtResource("3_cfqrj")]
-position = Vector2(480, 800)
-score_label = NodePath("../UI/MarginContainer/VBoxContainer/score/score")
-lives_container = NodePath("../UI/MarginContainer/VBoxContainer/lives_container")
-frog_sprite_container = NodePath("../frog_sprites")
-gameover_container = NodePath("../UI/gameover")
-win_container = NodePath("../UI/winner")
+[node name="player" type="Node2D" parent="." node_paths=PackedStringArray("tilemap")]
+position = Vector2(544, 800)
+script = ExtResource("4_rvp5v")
 tilemap = NodePath("../TileMapLayer")
 
-[node name="frog_sprites" type="Node2D" parent="."]
+[node name="reticle" type="Sprite2D" parent="player"]
+texture = ExtResource("5_lsjpk")
 
-[node name="UI" parent="." instance=ExtResource("5_k5jsb")]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="player"]
+sprite_frames = SubResource("SpriteFrames_jm2j6")
+animation = &"jump"
+autoplay = "idle"
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -86.0
-offset_right = 43.0
-grow_vertical = 0
-theme_override_constants/margin_left = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
-layout_mode = 2
-
-[node name="lives_container" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-
-[node name="score" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="score_tip" type="Label" parent="UI/MarginContainer/VBoxContainer/score"]
-layout_mode = 2
-text = " Score: "
-
-[node name="score" type="Label" parent="UI/MarginContainer/VBoxContainer/score"]
-layout_mode = 2
-text = "0"
-
-[node name="gameover" parent="UI" instance=ExtResource("5_k5jsb")]
-visible = false
-layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
-
-[node name="Label" type="Label" parent="UI/gameover"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -206.5
-offset_top = -49.5
-offset_right = 206.5
-offset_bottom = 49.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 72
-text = "GAME OVER"
-
-[node name="winner" parent="UI" instance=ExtResource("5_k5jsb")]
-visible = false
-layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
-
-[node name="Label2" type="Label" parent="UI/winner"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -206.5
-offset_top = -49.5
-offset_right = 206.5
-offset_bottom = 49.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 72
-text = "YOU WIN! :D"
+[node name="RayCast2D" type="RayCast2D" parent="player"]
+target_position = Vector2(0, 64)
+collide_with_areas = true
+collide_with_bodies = false

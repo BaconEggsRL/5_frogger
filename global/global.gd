@@ -64,7 +64,7 @@ var music_arr = [MUS_ORIG]
 func _ready():
 	
 	# debug mode
-	get_tree().set_debug_collisions_hint(true)
+	# get_tree().set_debug_collisions_hint(true)
 	
 	# Get root scene
 	var root = get_tree().root

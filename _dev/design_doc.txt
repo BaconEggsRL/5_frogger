@@ -46,4 +46,5 @@ Add a UI with a life counter and a score counter.
 Create an animation or use a particle effect to make the frog’s death extra juicy!
 
 Stretch goal:
+(next level after winning.)
 Make multiple levels. Higher difficulty levels feature more (faster) cars, and less platforms. Also, more logs crocodiles, and the center safe zone now features a snake (that can eat the player)

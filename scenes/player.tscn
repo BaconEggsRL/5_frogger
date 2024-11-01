@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://cy76x45pwqyua"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_134bh"]
+[ext_resource type="Texture2D" uid="uid://d2dvgx88rpisc" path="res://assets/player_sheet.png" id="2_drilq"]
+[ext_resource type="Texture2D" uid="uid://btfofglopimkg" path="res://assets/reticle.png" id="3_yhcw3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2l6g"]
+atlas = ExtResource("2_drilq")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i3oh"]
+atlas = ExtResource("2_drilq")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jm2j6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2l6g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i3oh")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l14tl"]
+size = Vector2(48, 48)
+
+[node name="player" type="Node2D"]
+script = ExtResource("1_134bh")
+
+[node name="reticle" type="Sprite2D" parent="."]
+texture = ExtResource("3_yhcw3")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jm2j6")
+animation = &"jump"
+autoplay = "idle"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 64)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_l14tl")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
