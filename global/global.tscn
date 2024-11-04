@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://52mefugqmusp"]
+[gd_scene load_steps=5 format=3 uid="uid://52mefugqmusp"]
 
 [ext_resource type="Script" path="res://global/global.gd" id="1_gr3b3"]
 [ext_resource type="AudioStream" uid="uid://b666ebdo8jwgi" path="res://sounds/jump1.wav" id="2_3aas1"]
 [ext_resource type="AudioStream" uid="uid://cxecq2m7jywpn" path="res://sounds/explosion2.wav" id="3_eqfgv"]
+[ext_resource type="AudioStream" uid="uid://0om46ggbdfl6" path="res://sounds/coin2.wav" id="4_nwirs"]
 
 [node name="global" type="Node"]
 script = ExtResource("1_gr3b3")
@@ -16,6 +17,11 @@ stream = ExtResource("2_3aas1")
 
 [node name="dead" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("3_eqfgv")
+
+[node name="lilypad" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("4_nwirs")
+volume_db = 5.0
+pitch_scale = 0.5
 
 [node name="SoundDelayTimer" type="Timer" parent="."]
 wait_time = 0.2

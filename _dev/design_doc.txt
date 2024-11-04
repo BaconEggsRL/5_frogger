@@ -23,12 +23,12 @@ Goal:
 #There is a safe lane, five lanes of road, another safe lane, and five lanes of water. 
 #Finally, there are five lillypads on the top of the screen.
 
-Make and animate the game obstacles. 
-All obstacles and platforms will cross the screen horizontally. 
-Obstacles will alternate direction for each lane.
+# Make and animate the game obstacles. 
+# All obstacles and platforms will cross the screen horizontally. 
+# Obstacles will alternate direction for each lane.
 
-The road has cars. 
-Each lane has a unique pattern of cars, and speeds vary between lanes.
+# The road has cars. 
+# Each lane has a unique pattern of cars, and speeds vary between lanes.
 
 The river has alternating lanes of logs and turtles. 
 Some turtles can dive underwater periodically. 

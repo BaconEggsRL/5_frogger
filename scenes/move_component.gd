@@ -20,10 +20,10 @@ func _physics_process(delta) -> void:
 	parent.translate(vel * delta)
 	
 	if move_dir > 0:  # moving right
-		if parent.position.x > Global.w + offset:
+		if parent.global_position.x > Global.w + offset:
 			print("MOVE TO: ", 0.0)
-			parent.position.x = 0.0
+			parent.global_position.x = 0.0
 	else:  # moving left
-		if parent.position.x < 0.0 - offset:
+		if parent.global_position.x < 0.0 - offset:
 			print("MOVE TO: ", Global.w + offset)
-			parent.position.x = Global.w + offset
+			parent.global_position.x = Global.w + offset

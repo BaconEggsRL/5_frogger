@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=4 uid="uid://0lpttllxeuh3"]
+[gd_scene load_steps=12 format=4 uid="uid://0lpttllxeuh3"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_clgxj"]
 [ext_resource type="Texture2D" uid="uid://wj474bpviun6" path="res://assets/tileset.png" id="2_f2uae"]
 [ext_resource type="PackedScene" uid="uid://cy76x45pwqyua" path="res://scenes/player.tscn" id="3_cfqrj"]
-[ext_resource type="PackedScene" uid="uid://couheins3dn8a" path="res://scenes/car.tscn" id="3_yhw6c"]
+[ext_resource type="PackedScene" uid="uid://cmam5cl448pa4" path="res://scenes/car_group.tscn" id="3_s83ui"]
+[ext_resource type="PackedScene" uid="uid://dss4wxxchkgsv" path="res://scenes/tractor_group.tscn" id="4_rw18h"]
 [ext_resource type="PackedScene" uid="uid://gw1nob7xyb6f" path="res://scenes/window_control.tscn" id="5_k5jsb"]
+[ext_resource type="PackedScene" uid="uid://dbsvs5fi7li6r" path="res://scenes/car2_group.tscn" id="5_vft25"]
+[ext_resource type="PackedScene" uid="uid://6ngrae2ai00h" path="res://scenes/car3_group.tscn" id="6_jrlc2"]
+[ext_resource type="PackedScene" uid="uid://bn23do3l1y6ma" path="res://scenes/truck_group.tscn" id="7_wew2e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pmrqq"]
 texture = ExtResource("2_f2uae")
@@ -306,14 +310,28 @@ tile_set = SubResource("TileSet_aixbo")
 
 [node name="lane_1" type="Node2D" parent="lanes"]
 
-[node name="car" parent="lanes/lane_1" instance=ExtResource("3_yhw6c")]
-position = Vector2(544, 736)
+[node name="car_group" parent="lanes/lane_1" instance=ExtResource("3_s83ui")]
+position = Vector2(128, 704)
 
-[node name="car2" parent="lanes/lane_1" instance=ExtResource("3_yhw6c")]
-position = Vector2(800, 736)
+[node name="lane_2" type="Node2D" parent="lanes"]
 
-[node name="car3" parent="lanes/lane_1" instance=ExtResource("3_yhw6c")]
-position = Vector2(288, 736)
+[node name="tractor_group" parent="lanes/lane_2" instance=ExtResource("4_rw18h")]
+position = Vector2(0, 640)
+
+[node name="lane_3" type="Node2D" parent="lanes"]
+
+[node name="car2_group" parent="lanes/lane_3" instance=ExtResource("5_vft25")]
+position = Vector2(579, 576)
+
+[node name="lane_4" type="Node2D" parent="lanes"]
+
+[node name="car3_group" parent="lanes/lane_4" instance=ExtResource("6_jrlc2")]
+position = Vector2(-272, 512)
+
+[node name="lane_5" type="Node2D" parent="lanes"]
+
+[node name="truck_group" parent="lanes/lane_5" instance=ExtResource("7_wew2e")]
+position = Vector2(0, 448)
 
 [node name="player" parent="." node_paths=PackedStringArray("score_label", "lives_container", "frog_sprite_container", "gameover_container", "win_container", "tilemap") instance=ExtResource("3_cfqrj")]
 position = Vector2(480, 800)
@@ -327,6 +345,7 @@ tilemap = NodePath("../TileMapLayer")
 [node name="frog_sprites" type="Node2D" parent="."]
 
 [node name="UI" parent="." instance=ExtResource("5_k5jsb")]
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 1

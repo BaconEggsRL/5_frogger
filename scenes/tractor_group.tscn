@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dss4wxxchkgsv"]
+
+[ext_resource type="PackedScene" uid="uid://cv7yuwqynhdbu" path="res://scenes/tractor.tscn" id="1_tpgdi"]
+
+[node name="tractor_group" type="Node2D" groups=["lane_group"]]
+
+[node name="tractor" parent="." instance=ExtResource("1_tpgdi")]
+position = Vector2(32, 32)
+
+[node name="tractor2" parent="." instance=ExtResource("1_tpgdi")]
+position = Vector2(288, 32)
+
+[node name="tractor3" parent="." instance=ExtResource("1_tpgdi")]
+position = Vector2(544, 32)

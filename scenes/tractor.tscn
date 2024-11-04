@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv7yuwqynhdbu"]
+
+[ext_resource type="Texture2D" uid="uid://cq4p3sex4f334" path="res://assets/tractor1.png" id="2_6ok1l"]
+[ext_resource type="Script" path="res://scenes/move_component.gd" id="3_v0nf7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfixi"]
+size = Vector2(64, 64)
+
+[node name="tractor" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6ok1l")
+
+[node name="Area2D" type="Area2D" parent="." groups=["kill_area"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gfixi")
+
+[node name="move_component" type="Node2D" parent="."]
+script = ExtResource("3_v0nf7")
+move_dir = 1

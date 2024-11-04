@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn23do3l1y6ma"]
+
+[ext_resource type="PackedScene" uid="uid://ck486n3p3c1gg" path="res://scenes/truck.tscn" id="1_wpuy0"]
+
+[node name="truck_group" type="Node2D" groups=["lane_group"]]
+
+[node name="truck" parent="." instance=ExtResource("1_wpuy0")]
+position = Vector2(64, 32)
+
+[node name="truck2" parent="." instance=ExtResource("1_wpuy0")]
+position = Vector2(384, 32)
+
+[node name="truck3" parent="." instance=ExtResource("1_wpuy0")]
+position = Vector2(704, 32)

@@ -132,6 +132,7 @@ func move(dir:Vector2i) -> void:
 	# check if reached end; reset position
 	var lilypad = tiledata.get_custom_data("lilypad")
 	if lilypad:
+		Global.play_sound("lilypad")
 		score += lilypad_score
 		var f = FROG_SPRITE.instantiate()
 		f.position = self.position

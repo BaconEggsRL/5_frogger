@@ -7,8 +7,6 @@
 script = ExtResource("1_esch7")
 
 [node name="window_control" parent="." instance=ExtResource("2_gm5tw")]
-offset_right = 960.0
-offset_bottom = 960.0
 
 [node name="GridContainer" type="GridContainer" parent="window_control"]
 layout_mode = 1

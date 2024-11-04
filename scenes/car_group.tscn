@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmam5cl448pa4"]
+
+[ext_resource type="PackedScene" uid="uid://couheins3dn8a" path="res://scenes/car.tscn" id="1_gbd51"]
+
+[node name="car_group" type="Node2D" groups=["lane_group"]]
+
+[node name="car" parent="." instance=ExtResource("1_gbd51")]
+position = Vector2(32, 32)
+
+[node name="car2" parent="." instance=ExtResource("1_gbd51")]
+position = Vector2(288, 32)
+
+[node name="car3" parent="." instance=ExtResource("1_gbd51")]
+position = Vector2(544, 32)
