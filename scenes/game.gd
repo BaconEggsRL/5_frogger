@@ -13,3 +13,7 @@ func _ready() -> void:
 func _input(_event) -> void:
 	if Input.is_action_just_pressed("restart"):
 		Global.to_game()
+
+
+func _on_quit_btn_pressed() -> void:
+	Global.to_main()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://0lpttllxeuh3"]
+[gd_scene load_steps=19 format=4 uid="uid://0lpttllxeuh3"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_clgxj"]
 [ext_resource type="Texture2D" uid="uid://wj474bpviun6" path="res://assets/tileset.png" id="2_f2uae"]
@@ -307,6 +307,16 @@ custom_data_layer_3/name = "water"
 custom_data_layer_3/type = 1
 sources/0 = SubResource("TileSetAtlasSource_pmrqq")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_low3u"]
+bg_color = Color(0.212305, 0.212305, 0.212305, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_1x3bn"]
+Button/styles/normal = SubResource("StyleBoxFlat_low3u")
+
 [node name="game" type="Node2D"]
 script = ExtResource("1_clgxj")
 
@@ -403,13 +413,15 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -86.0
-offset_right = 43.0
+offset_left = 8.0
+offset_top = -72.0
+offset_right = 94.0
+offset_bottom = -13.0
 grow_vertical = 0
-theme_override_constants/margin_left = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="lives_container" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -432,7 +444,7 @@ layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="Label" type="Label" parent="UI/gameover"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/gameover"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -440,13 +452,23 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -206.5
-offset_top = -49.5
+offset_top = -74.0
 offset_right = 206.5
-offset_bottom = 49.5
+offset_bottom = 74.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/gameover/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "GAME OVER"
+
+[node name="restart_tip" type="Label" parent="UI/gameover/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Press R to restart"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="winner" parent="UI" instance=ExtResource("5_k5jsb")]
 visible = false
@@ -469,3 +491,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 72
 text = "YOU WIN! :D"
+
+[node name="QuitBtn" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -56.0
+offset_right = -9.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_1x3bn")
+text = "Return To Main"
+
+[connection signal="pressed" from="UI/QuitBtn" to="." method="_on_quit_btn_pressed"]

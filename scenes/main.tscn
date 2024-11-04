@@ -25,7 +25,17 @@ grow_vertical = 2
 [node name="title" type="Label" parent="window_control/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 86
-text = "FROGGER"
+text = "FROGGY HOP"
+horizontal_alignment = 1
+
+[node name="instructions" type="Label" parent="window_control/GridContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "MOVE WITH THE ARROW KEYS
+PRESS R TO RESTART"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayBtn" type="Button" parent="window_control/GridContainer"]
 layout_mode = 2
