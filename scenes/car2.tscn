@@ -16,6 +16,7 @@ texture = ExtResource("1_fi857")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_gfixi")
 
-[node name="move_component" type="Node2D" parent="."]
+[node name="move_component" type="Node2D" parent="Area2D"]
 script = ExtResource("2_kv5h7")
+offset = 64
 speed = 136

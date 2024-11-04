@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://byp721b147i0d"]
+
+[ext_resource type="PackedScene" uid="uid://bst1be3i4fbyn" path="res://scenes/long_log.tscn" id="1_2uchq"]
+
+[node name="long_log_group" type="Node2D"]
+
+[node name="long_log" parent="." instance=ExtResource("1_2uchq")]
+position = Vector2(224, 32)
+
+[node name="long_log3" parent="." instance=ExtResource("1_2uchq")]
+position = Vector2(864, 32)

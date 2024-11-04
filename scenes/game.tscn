@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://0lpttllxeuh3"]
+[gd_scene load_steps=17 format=4 uid="uid://0lpttllxeuh3"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_clgxj"]
 [ext_resource type="Texture2D" uid="uid://wj474bpviun6" path="res://assets/tileset.png" id="2_f2uae"]
@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://dbsvs5fi7li6r" path="res://scenes/car2_group.tscn" id="5_vft25"]
 [ext_resource type="PackedScene" uid="uid://6ngrae2ai00h" path="res://scenes/car3_group.tscn" id="6_jrlc2"]
 [ext_resource type="PackedScene" uid="uid://bn23do3l1y6ma" path="res://scenes/truck_group.tscn" id="7_wew2e"]
+[ext_resource type="PackedScene" uid="uid://bbokao5x0sewg" path="res://scenes/log_group.tscn" id="8_ar80y"]
+[ext_resource type="PackedScene" uid="uid://co6p0ksh77ga6" path="res://scenes/turtle_group_3.tscn" id="8_rorjn"]
+[ext_resource type="PackedScene" uid="uid://byp721b147i0d" path="res://scenes/long_log_group.tscn" id="10_4y0t8"]
+[ext_resource type="PackedScene" uid="uid://bqv38a2k3j2n4" path="res://scenes/turtle_group_2.tscn" id="11_y8et0"]
+[ext_resource type="PackedScene" uid="uid://bsu2omve4ahci" path="res://scenes/medium_log_group.tscn" id="12_ibt55"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pmrqq"]
 texture = ExtResource("2_f2uae")
@@ -278,6 +283,7 @@ texture_region_size = Vector2i(64, 64)
 11:11/0 = 0
 12:11/0 = 0
 12:11/0/custom_data_0 = true
+12:11/0/custom_data_3 = true
 13:11/0 = 0
 14:11/0 = 0
 15:11/0 = 0
@@ -297,6 +303,8 @@ custom_data_layer_1/name = "lilypad"
 custom_data_layer_1/type = 1
 custom_data_layer_2/name = "full"
 custom_data_layer_2/type = 1
+custom_data_layer_3/name = "water"
+custom_data_layer_3/type = 1
 sources/0 = SubResource("TileSetAtlasSource_pmrqq")
 
 [node name="game" type="Node2D"]
@@ -332,6 +340,49 @@ position = Vector2(-272, 512)
 
 [node name="truck_group" parent="lanes/lane_5" instance=ExtResource("7_wew2e")]
 position = Vector2(0, 448)
+
+[node name="lane_6" type="Node2D" parent="lanes"]
+
+[node name="turtle_group_3" parent="lanes/lane_6" instance=ExtResource("8_rorjn")]
+position = Vector2(128, 320)
+
+[node name="turtle_group_4" parent="lanes/lane_6" instance=ExtResource("8_rorjn")]
+position = Vector2(384, 320)
+
+[node name="turtle_group_5" parent="lanes/lane_6" instance=ExtResource("8_rorjn")]
+position = Vector2(640, 320)
+
+[node name="turtle_group_6" parent="lanes/lane_6" instance=ExtResource("8_rorjn")]
+position = Vector2(896, 320)
+
+[node name="lane_7" type="Node2D" parent="lanes"]
+
+[node name="log_group" parent="lanes/lane_7" instance=ExtResource("8_ar80y")]
+position = Vector2(0, 256)
+
+[node name="lane_8" type="Node2D" parent="lanes"]
+
+[node name="long_log_group" parent="lanes/lane_8" instance=ExtResource("10_4y0t8")]
+position = Vector2(0, 192)
+
+[node name="lane_9" type="Node2D" parent="lanes"]
+
+[node name="turtle_group_2" parent="lanes/lane_9" instance=ExtResource("11_y8et0")]
+position = Vector2(64, 128)
+
+[node name="turtle_group_3" parent="lanes/lane_9" instance=ExtResource("11_y8et0")]
+position = Vector2(320, 128)
+
+[node name="turtle_group_4" parent="lanes/lane_9" instance=ExtResource("11_y8et0")]
+position = Vector2(576, 128)
+
+[node name="turtle_group_5" parent="lanes/lane_9" instance=ExtResource("11_y8et0")]
+position = Vector2(832, 128)
+
+[node name="lane_10" type="Node2D" parent="lanes"]
+
+[node name="medium_log_group" parent="lanes/lane_10" instance=ExtResource("12_ibt55")]
+position = Vector2(0, 64)
 
 [node name="player" parent="." node_paths=PackedStringArray("score_label", "lives_container", "frog_sprite_container", "gameover_container", "win_container", "tilemap") instance=ExtResource("3_cfqrj")]
 position = Vector2(480, 800)

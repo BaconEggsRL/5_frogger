@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsu2omve4ahci"]
+
+[ext_resource type="PackedScene" uid="uid://25q7q1cjmxom" path="res://scenes/medium_log.tscn" id="1_dl70x"]
+
+[node name="medium_log_group" type="Node2D"]
+
+[node name="medium_log" parent="." instance=ExtResource("1_dl70x")]
+position = Vector2(160, 32)
+
+[node name="medium_log2" parent="." instance=ExtResource("1_dl70x")]
+position = Vector2(576, 32)
+
+[node name="medium_log3" parent="." instance=ExtResource("1_dl70x")]
+position = Vector2(992, 32)

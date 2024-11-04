@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjmcs8lvog7lf"]
+
+[ext_resource type="Texture2D" uid="uid://bdmfngdvr16kg" path="res://assets/log.png" id="1_ntyek"]
+[ext_resource type="Script" path="res://scenes/move_component.gd" id="2_hhtas"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvdim"]
+size = Vector2(176, 64)
+
+[node name="log" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ntyek")
+
+[node name="Area2D" type="Area2D" parent="." groups=["move_area"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -2)
+shape = SubResource("RectangleShape2D_cvdim")
+
+[node name="move_component" type="Node2D" parent="Area2D"]
+script = ExtResource("2_hhtas")
+offset = 88
+origin = -88.0
+move_dir = 1

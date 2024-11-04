@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbokao5x0sewg"]
+
+[ext_resource type="PackedScene" uid="uid://cjmcs8lvog7lf" path="res://scenes/log.tscn" id="1_sbtr4"]
+
+[node name="log_group" type="Node2D"]
+
+[node name="log" parent="." instance=ExtResource("1_sbtr4")]
+position = Vector2(87, 34)
+
+[node name="log2" parent="." instance=ExtResource("1_sbtr4")]
+position = Vector2(471, 34)
+
+[node name="log3" parent="." instance=ExtResource("1_sbtr4")]
+position = Vector2(855, 34)

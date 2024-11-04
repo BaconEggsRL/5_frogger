@@ -1,9 +1,11 @@
 class_name MoveComponent
 extends Node2D
 
-var offset = 32
+@export var offset = 32
+@export var origin = 0.0
 
-@onready var parent: Node2D = $".."
+@onready var area: Node2D = $".."
+@onready var root: Node2D = $"../.."
 
 
 @export var speed:int = 96
@@ -17,13 +19,13 @@ func _physics_process(delta) -> void:
 	# print(move_dir)
 	var vel = Vector2(move_dir, 0) * speed
 	# print(vel)
-	parent.translate(vel * delta)
+	root.translate(vel * delta)
 	
 	if move_dir > 0:  # moving right
-		if parent.global_position.x > Global.w + offset:
-			print("MOVE TO: ", 0.0)
-			parent.global_position.x = 0.0
+		if root.global_position.x > Global.w + offset:
+			# print("MOVE TO: ", origin)
+			root.global_position.x = origin
 	else:  # moving left
-		if parent.global_position.x < 0.0 - offset:
-			print("MOVE TO: ", Global.w + offset)
-			parent.global_position.x = Global.w + offset
+		if root.global_position.x < origin - offset:
+			# print("MOVE TO: ", Global.w + offset)
+			root.global_position.x = Global.w + offset
