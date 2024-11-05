@@ -11,17 +11,21 @@ script = ExtResource("1_gr3b3")
 [node name="sounds" type="Node" parent="."]
 
 [node name="music" type="AudioStreamPlayer" parent="sounds"]
+bus = &"music"
 
 [node name="jump" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("2_3aas1")
+bus = &"sfx"
 
 [node name="dead" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("3_eqfgv")
+bus = &"sfx"
 
 [node name="lilypad" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("4_nwirs")
 volume_db = 5.0
 pitch_scale = 0.5
+bus = &"sfx"
 
 [node name="SoundDelayTimer" type="Timer" parent="."]
 wait_time = 0.2

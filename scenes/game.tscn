@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://0lpttllxeuh3"]
+[gd_scene load_steps=25 format=4 uid="uid://0lpttllxeuh3"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_clgxj"]
 [ext_resource type="Texture2D" uid="uid://wj474bpviun6" path="res://assets/tileset.png" id="2_f2uae"]
@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://cb1tfthkvbpjd" path="res://scenes/lily_sprite.tscn" id="14_sumjo"]
 [ext_resource type="FontFile" uid="uid://bbyt562m5hrhy" path="res://fonts/Bangers/Bangers-Regular.ttf" id="16_xlxlk"]
 [ext_resource type="Theme" uid="uid://ckjxtb0uvqanb" path="res://font_theme.tres" id="17_aykjp"]
+[ext_resource type="Texture2D" uid="uid://bkbc2bx66npsm" path="res://assets/unmute.png" id="18_6qgcm"]
+[ext_resource type="Script" path="res://scenes/mute_unmute.gd" id="18_xe746"]
+[ext_resource type="Texture2D" uid="uid://dggfhvbvlrq71" path="res://assets/mute.png" id="19_32q07"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pmrqq"]
 texture = ExtResource("2_f2uae")
@@ -535,22 +538,49 @@ text = "Press R to restart"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="QuitBtn" type="Button" parent="UI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -144.0
+offset_left = -171.0
 offset_top = -56.0
-offset_right = -17.0
+offset_right = -18.0
 offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="MuteUnmute" type="Button" parent="UI/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+theme = SubResource("Theme_1x3bn")
+theme_override_fonts/font = ExtResource("16_xlxlk")
+theme_override_font_sizes/font_size = 20
+text = "          "
+script = ExtResource("18_xe746")
+
+[node name="sprite_container" type="Node2D" parent="UI/HBoxContainer/MuteUnmute"]
+position = Vector2(19.495, 19.69)
+scale = Vector2(0.5, 0.5)
+
+[node name="Mute" type="Sprite2D" parent="UI/HBoxContainer/MuteUnmute/sprite_container"]
+texture = ExtResource("19_32q07")
+
+[node name="Unmute" type="Sprite2D" parent="UI/HBoxContainer/MuteUnmute/sprite_container"]
+visible = false
+texture = ExtResource("18_6qgcm")
+
+[node name="QuitBtn" type="Button" parent="UI/HBoxContainer"]
+custom_minimum_size = Vector2(132.69, 0)
+layout_mode = 2
 theme = SubResource("Theme_1x3bn")
 theme_override_fonts/font = ExtResource("16_xlxlk")
 theme_override_font_sizes/font_size = 20
 text = "Return To Main"
 
-[connection signal="pressed" from="UI/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/MuteUnmute" to="UI/HBoxContainer/MuteUnmute" method="_on_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
