@@ -99,6 +99,8 @@ func resize():
 	size = DisplayServer.window_get_size()
 	w = size.x
 	h = size.y
+	# print("GLOBAL w = %s" % w)
+	# print("GLOBAL h = %s" % h)
 	# var msg = "w = %s, h = %s" % [Global.w, Global.h]
 	# print(msg)
 		

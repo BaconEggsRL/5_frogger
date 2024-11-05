@@ -3,6 +3,8 @@ extends Node2D
 
 signal update_player
 
+var game_width = 960
+
 @export var offset = 32
 @export var origin = 0.0
 
@@ -25,13 +27,13 @@ func _physics_process(delta) -> void:
 	root.translate(vel * delta)
 	
 	if move_dir > 0:  # moving right
-		if root.global_position.x > Global.w + offset:
+		if root.global_position.x > game_width + offset:
 			# print("MOVE TO: ", origin)
 			root.global_position.x = origin
 	else:  # moving left
 		if root.global_position.x < origin - offset:
 			# print("MOVE TO: ", Global.w + offset)
-			root.global_position.x = Global.w + offset
+			root.global_position.x = game_width + offset
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
