@@ -40,6 +40,7 @@ window/stretch/mode="canvas_items"
 kill_area=""
 lane_group=""
 move_area=""
+player_area=""
 
 [input]
 

@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ckjxtb0uvqanb"]
+
+[ext_resource type="FontFile" uid="uid://bbyt562m5hrhy" path="res://fonts/Bangers/Bangers-Regular.ttf" id="1_mkfft"]
+
+[resource]
+default_font = ExtResource("1_mkfft")

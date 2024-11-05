@@ -46,7 +46,7 @@ var h
 @onready var sounds = $sounds
 
 # Music
-const MUS_ORIG = preload("res://sounds/music.mp3")
+const MUS_ORIG = preload("res://sounds/froggy_hops.mp3")
 # const FRUIT_SLICES__VOCAL_2_ = preload("res://sounds/Fruit Slices (Vocal_2).mp3")
 # const FRUIT_SLICE_SERENADE__INSTRUMENTAL_ = preload("res://sounds/Fruit Slice Serenade (Instrumental).mp3")
 

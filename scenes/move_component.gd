@@ -1,10 +1,12 @@
 class_name MoveComponent
 extends Node2D
 
+signal update_player
+
 @export var offset = 32
 @export var origin = 0.0
 
-@onready var area: Node2D = $".."
+@onready var area_2d: Area2D = $".."
 @onready var root: Node2D = $"../.."
 
 
@@ -13,7 +15,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	area_2d.connect("area_entered", self._on_area_2d_area_entered)
+
 
 func _physics_process(delta) -> void:
 	# print(move_dir)
@@ -29,3 +32,11 @@ func _physics_process(delta) -> void:
 		if root.global_position.x < origin - offset:
 			# print("MOVE TO: ", Global.w + offset)
 			root.global_position.x = Global.w + offset
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_area"):
+		var player:PLAYER = area.get_parent()
+		player.platform_dir = move_dir
+		player.platform_speed = speed
+		

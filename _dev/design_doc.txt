@@ -38,14 +38,10 @@ Goal:
 The player should die if:
 # they leave the screen (from logs or turtles.)
 # they are hit by a car
-they fall in the water (frogs can drown, apparently)
+# they fall in the water (frogs can drown, apparently) -- if tile is water and not is_on_platform
+# If the player reaches a lillypad on the top of the screen, the lillypad will be “full.” When all five lillypads are full, the level is complete.
+# Add a UI with a life counter and a score counter.
 
-if tile is water and not is_on_platform
-
-they are eaten by a wild animal
-If the player reaches a lillypad on the top of the screen, the lillypad will be “full.” When all five lillypads are full, the level is complete.
-Add a UI with a life counter and a score counter.
-Create an animation or use a particle effect to make the frog’s death extra juicy!
 
 
 
@@ -54,6 +50,9 @@ Create an animation or use a particle effect to make the frog’s death extra ju
 Stretch goal:
 Some turtles can dive underwater periodically. 
 Some logs are actually crocodiles, which can eat the player if the player lands in their open mouth.
+
+die if they are eaten by a wild animal
+Create an animation or use a particle effect to make the frog’s death extra juicy!
 
 (next level after winning.)
 Make multiple levels. Higher difficulty levels feature more (faster) cars, and less platforms. Also, more logs crocodiles, and the center safe zone now features a snake (that can eat the player)

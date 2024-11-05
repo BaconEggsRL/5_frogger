@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvfhnbnxq8ukp"]
+[gd_scene load_steps=4 format=3 uid="uid://bvfhnbnxq8ukp"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_esch7"]
 [ext_resource type="PackedScene" uid="uid://gw1nob7xyb6f" path="res://scenes/window_control.tscn" id="2_gm5tw"]
+[ext_resource type="Theme" uid="uid://ckjxtb0uvqanb" path="res://font_theme.tres" id="3_0lcfj"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_esch7")
@@ -14,7 +15,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 100.0
 grow_vertical = 2
-color = Color(0.352941, 0.352941, 0.352941, 1)
+color = Color(0.313726, 0.313726, 0.313726, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="window_control"]
 layout_mode = 1
@@ -25,7 +26,7 @@ anchor_bottom = 1.0
 offset_left = -100.0
 grow_horizontal = 0
 grow_vertical = 2
-color = Color(0.352941, 0.352941, 0.352941, 1)
+color = Color(0.313726, 0.313726, 0.313726, 1)
 
 [node name="GridContainer" type="GridContainer" parent="window_control"]
 layout_mode = 1
@@ -43,6 +44,7 @@ grow_vertical = 2
 
 [node name="title" type="Label" parent="window_control/GridContainer"]
 layout_mode = 2
+theme = ExtResource("3_0lcfj")
 theme_override_font_sizes/font_size = 86
 text = "FROGGY HOP"
 horizontal_alignment = 1
@@ -50,15 +52,21 @@ horizontal_alignment = 1
 [node name="instructions" type="Label" parent="window_control/GridContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("3_0lcfj")
+theme_override_font_sizes/font_size = 24
 text = "MOVE WITH THE ARROW KEYS
-PRESS R TO RESTART"
+DODGE TRAFFIC
+DON'T DROWN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlayBtn" type="Button" parent="window_control/GridContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 71
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_0lcfj")
+theme_override_font_sizes/font_size = 64
 text = "PLAY"
 
 [connection signal="pressed" from="window_control/GridContainer/PlayBtn" to="." method="_on_play_btn_pressed"]

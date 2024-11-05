@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb1tfthkvbpjd"]
+
+[ext_resource type="Texture2D" uid="uid://dfo2lgi4flf01" path="res://assets/lily.png" id="1_thopm"]
+
+[node name="lily" type="Sprite2D"]
+texture = ExtResource("1_thopm")
