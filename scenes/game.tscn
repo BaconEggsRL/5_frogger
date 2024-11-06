@@ -403,6 +403,9 @@ position = Vector2(0, 64)
 
 [node name="player" parent="." node_paths=PackedStringArray("tilemap", "gameover_container", "win_container", "score_label", "lives_container", "frog_sprite_container") instance=ExtResource("3_cfqrj")]
 position = Vector2(480, 800)
+use_move_delay = true
+MOVE_DELAY = 0.4
+car_safe = true
 tilemap = NodePath("../TileMapLayer")
 gameover_container = NodePath("../UI/gameover")
 win_container = NodePath("../UI/winner")

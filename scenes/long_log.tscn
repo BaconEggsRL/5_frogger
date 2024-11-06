@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/move_component.gd" id="2_ra67n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jls22"]
-size = Vector2(448, 64)
+size = Vector2(432, 51)
 
 [node name="long_log" type="Node2D"]
 
@@ -14,6 +14,7 @@ texture = ExtResource("1_np3vy")
 [node name="Area2D" type="Area2D" parent="." groups=["move_area"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_jls22")
 
 [node name="move_component" type="Node2D" parent="Area2D"]

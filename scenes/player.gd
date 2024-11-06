@@ -1,6 +1,17 @@
 class_name PLAYER
 extends Node2D
 
+@export var use_move_delay = false
+@export var MOVE_DELAY = 0.36
+# const FAST_MOVE_DELAY = 0.16
+var first_move:bool = true
+
+@onready var pressed_keys = []
+@onready var input_actions: Array[StringName] = [&"up", &"down", &"left", &"right"]
+
+@onready var can_move: bool = true
+@onready var can_move_timer: Timer = $CanMoveTimer
+
 # debug
 @export var invincible = false
 @export var car_safe = false
@@ -15,7 +26,8 @@ var tile_size = 64
 @export var win_container:Control
 
 # overlapping areas
-@onready var area_2d: Area2D = $Area2D
+@onready var kill_area: Area2D = $KillArea
+@onready var platform_area: Area2D = $PlatformArea
 
 # spawn position
 var spawn_pos = Vector2(480, 800)
@@ -57,8 +69,12 @@ var is_moving:bool = false
 var is_dying:bool = false
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# set move delay
+	can_move_timer.wait_time = MOVE_DELAY
+	
 	# set best tile
 	var current_tile:Vector2i = tilemap.local_to_map(global_position)
 	best_lane = current_tile.y
@@ -118,21 +134,36 @@ func _process(delta: float) -> void:
 	if is_on_platform():
 		var vel = Vector2(platform_dir, 0) * platform_speed
 		self.translate(vel * delta)
+	
+	# handle input
+	for action in input_actions:
+		if Input.is_action_just_pressed(action): # handle taps
+			pressed_keys.push_back(action)
+		if Input.is_action_just_released(action): # handle release of key
+			pressed_keys.erase(action)
+	# print results
+	if pressed_keys:
+		print(pressed_keys)
+		# get the last key pressed and move in that direction
 		
-	# don't process input if sprite is moving
-	if is_moving:
-		return
-
-	# move
-	if Input.is_action_pressed("up"):
-		move(Vector2i.UP)
-	elif Input.is_action_pressed("down"):
-		move(Vector2i.DOWN)
-	elif Input.is_action_pressed("left"):
-		move(Vector2i.LEFT)
-	elif Input.is_action_pressed("right"):
-		move(Vector2i.RIGHT)
-		
+		# don't process input if sprite is already moving
+		if is_moving:
+			return
+			
+		# move
+		if can_move:
+			match pressed_keys[-1]:
+				&"up":
+					move(Vector2i.UP)
+				&"down":
+					move(Vector2i.DOWN)
+				&"left":
+					move(Vector2i.LEFT)
+				&"right":
+					move(Vector2i.RIGHT)
+	else:
+		first_move = true  # reset movement if no keys pressed
+		can_move = true
 
 
 func move(dir:Vector2i) -> void:
@@ -150,7 +181,6 @@ func move(dir:Vector2i) -> void:
 	# Get custome data layer from target tile (is walkable?)
 	var tiledata:TileData = tilemap.get_cell_tile_data(target_tile)
 
-
 	# check if walkable
 	var walkable = tiledata.get_custom_data("walkable")
 	if not walkable:
@@ -165,8 +195,10 @@ func move(dir:Vector2i) -> void:
 	# check if full
 	if full_tiles.has(target_tile):
 		return
-	
-	# Move player
+
+	########################################################
+		
+	# move
 	is_moving = true
 	Global.play_sound("jump")
 	sprite_2d.play("jump")
@@ -200,6 +232,14 @@ func move(dir:Vector2i) -> void:
 		else:
 			# reset position and lane
 			reset()
+			
+	################################################
+	# start delay if first move
+	if use_move_delay:
+		if first_move:
+			can_move = false
+			can_move_timer.start()
+	
 
 
 # kill the player
@@ -233,7 +273,7 @@ func kill_me() -> void:
 	
 
 # get overlapping areas in group
-func get_overlapping_areas(group_name:String = ""):
+func get_overlapping_areas(area_2d:Area2D, group_name:String = ""):
 	# var group_name = "move_area"
 	# var group_name = "kill_area"
 	
@@ -245,8 +285,8 @@ func get_overlapping_areas(group_name:String = ""):
 
 
 # check if player is on area
-func is_on_area(group_name:String = ""):
-	var areas = get_overlapping_areas(group_name)
+func is_on_area(area_2d:Area2D, group_name:String = ""):
+	var areas = get_overlapping_areas(area_2d, group_name)
 	if areas:
 		var msg = "'%s' areas = %s" % [group_name, areas]
 		# print(msg)
@@ -256,10 +296,10 @@ func is_on_area(group_name:String = ""):
 	
 
 func is_on_killzone():
-	return is_on_area("kill_area")
+	return is_on_area(kill_area, "kill_area")
 
 func is_on_platform():
-	return is_on_area("move_area")
+	return is_on_area(platform_area, "move_area")
 	
 func is_on_water():
 	var current_tile:Vector2i = tilemap.local_to_map(global_position)
@@ -277,3 +317,8 @@ func reset() -> void:
 	var current_tile:Vector2i = tilemap.local_to_map(global_position)
 	best_lane = current_tile.y
 	is_dying = false
+
+
+func _on_can_move_timer_timeout() -> void:
+	first_move = false
+	can_move = true

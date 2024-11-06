@@ -48,6 +48,11 @@ The player should die if:
 
 
 Stretch goal:
+Fix values for falling off platforms
+
+Add a timer (track how long it takes to win)
+Add credits (suno ai music, other froggy game)
+
 Some turtles can dive underwater periodically. 
 Some logs are actually crocodiles, which can eat the player if the player lands in their open mouth.
 

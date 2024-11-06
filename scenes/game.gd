@@ -7,10 +7,6 @@ func _ready() -> void:
 	# Play music
 	Global.play_sound("music")
 	
-	#var lane_groups = get_tree().get_nodes_in_group("lane_group")
-	#for lg in lane_groups:
-		#lg.global_position.x = 500
-	
 
 # check inputs for UI / pause / restart
 func _input(_event) -> void:

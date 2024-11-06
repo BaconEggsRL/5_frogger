@@ -34,7 +34,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l14tl"]
 size = Vector2(48, 48)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mvkum"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7xojf"]
+radius = 7.0
 
 [node name="player" type="Node2D"]
 script = ExtResource("1_134bh")
@@ -60,7 +61,7 @@ shape = SubResource("RectangleShape2D_l14tl")
 [node name="PlatformArea" type="Area2D" parent="." groups=["player_area"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformArea"]
-shape = SubResource("CircleShape2D_mvkum")
+shape = SubResource("CircleShape2D_7xojf")
 
 [node name="CanMoveTimer" type="Timer" parent="."]
 wait_time = 0.5
