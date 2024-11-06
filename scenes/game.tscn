@@ -407,7 +407,6 @@ position = Vector2(0, 64)
 position = Vector2(480, 800)
 use_move_delay = true
 MOVE_DELAY = 0.4
-invincible = true
 tilemap = NodePath("../TileMapLayer")
 gameover_container = NodePath("../UI/gameover")
 win_container = NodePath("../UI/winner")

@@ -37,7 +37,7 @@ var platform_speed = 0.0
 var platform_dir = 1
 
 # out of bounds
-var MAX_X = Global.w
+var MAX_X = 960
 var MIN_X = 0.0
 
 # lilypads
