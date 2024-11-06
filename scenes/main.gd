@@ -9,3 +9,7 @@ func _ready() -> void:
 
 func _on_play_btn_pressed() -> void:
 	Global.to_game()
+
+
+func _on_stats_btn_pressed() -> void:
+	Global.to_stats()

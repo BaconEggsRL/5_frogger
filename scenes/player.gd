@@ -72,6 +72,10 @@ var is_dying:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# reset globals
+	Global.is_game_over = false
+	Global.is_game_won = false
+	
 	# set move delay
 	can_move_timer.wait_time = MOVE_DELAY
 	
@@ -210,14 +214,14 @@ func move(dir:Vector2i) -> void:
 	# increment score
 	if target_tile.y < best_lane:
 		best_lane = target_tile.y
-		score += lane_score
-		score_label.text = str(score)
+		update_score(lane_score)
 	
 	# check if reached end; reset position
 	var lilypad = tiledata.get_custom_data("lilypad")
 	if lilypad:
 		Global.play_sound("lilypad")
-		score += lilypad_score
+		update_score(lilypad_score)
+		
 		var f = FROG_SPRITE.instantiate()
 		f.position = self.position
 		frog_sprite_container.add_child(f)
@@ -227,21 +231,33 @@ func move(dir:Vector2i) -> void:
 		
 		# check if won
 		if full_tiles.size() == MAX_LILYPADS:
+			Global.is_game_won = true
 			win_container.show()
 			call_deferred("queue_free")
 		else:
 			# reset position and lane
 			reset()
-			
+	
 	################################################
 	# start delay if first move
 	if use_move_delay:
 		if first_move:
 			can_move = false
 			can_move_timer.start()
+
+
+# update score and high score
+func update_score(score_amount) -> void:
+	# update score
+	score += score_amount
+	score_label.text = str(score)
+		
+	# update high score
+	if score > Global.save_data.best_score:
+		Global.save_data.best_score = score
+		Global.save_data.save()
 	
-
-
+	
 # kill the player
 func kill_me() -> void:
 	if not is_dying:

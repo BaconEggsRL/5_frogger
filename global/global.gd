@@ -13,6 +13,7 @@ var current_scene = null
 # Scenes
 const MAIN = preload("res://scenes/main.tscn")
 const GAME = preload("res://scenes/game.tscn")
+const STATS = preload("res://scenes/stats.tscn")
 
 ##################################################################
 
@@ -24,6 +25,7 @@ var mobile = false
 # Game settings
 # var is_game_paused = false
 var is_game_over = false
+var is_game_won = false
 
 # Game variables
 # const SCROLL_SPEED = 200.0
@@ -241,7 +243,9 @@ func to_main() -> void:
 
 func to_game() -> void:
 	goto_scene(GAME)
-	
+
+func to_stats() -> void:
+	goto_scene(STATS)
 	
 
 func goto_scene(path) -> void:

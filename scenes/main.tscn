@@ -115,4 +115,14 @@ theme = ExtResource("3_0lcfj")
 theme_override_font_sizes/font_size = 64
 text = "PLAY"
 
+[node name="StatsBtn" type="Button" parent="window_control/GridContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_0lcfj")
+theme_override_font_sizes/font_size = 64
+text = "STATS"
+
 [connection signal="pressed" from="window_control/GridContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="window_control/GridContainer/StatsBtn" to="." method="_on_stats_btn_pressed"]

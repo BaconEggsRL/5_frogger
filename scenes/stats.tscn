@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3 uid="uid://bum8wxtxax626"]
+
+[ext_resource type="Script" path="res://scenes/stats.gd" id="1_wg0ie"]
+[ext_resource type="PackedScene" uid="uid://gw1nob7xyb6f" path="res://scenes/window_control.tscn" id="2_wumcj"]
+[ext_resource type="FontFile" uid="uid://bbyt562m5hrhy" path="res://fonts/Bangers/Bangers-Regular.ttf" id="3_ejvyx"]
+[ext_resource type="Theme" uid="uid://ckjxtb0uvqanb" path="res://font_theme.tres" id="5_uyr5e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3s78y"]
+font = ExtResource("3_ejvyx")
+font_size = 80
+
+[node name="stats" type="Node2D" node_paths=PackedStringArray("best_score_label", "best_time_label")]
+script = ExtResource("1_wg0ie")
+best_score_label = NodePath("window_control/GridContainer/best_score")
+best_time_label = NodePath("window_control/GridContainer/best_time")
+
+[node name="window_control" parent="." instance=ExtResource("2_wumcj")]
+
+[node name="ColorRect4" type="ColorRect" parent="window_control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(3.36915e-07, 0.545054, 0.411221, 1)
+
+[node name="border1" type="ColorRect" parent="window_control"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 100.0
+grow_vertical = 2
+color = Color(0.313726, 0.313726, 0.313726, 0.682353)
+
+[node name="border2" type="ColorRect" parent="window_control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.313726, 0.313726, 0.313726, 0.682353)
+
+[node name="border3" type="ColorRect" parent="window_control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.156863)
+
+[node name="border4" type="ColorRect" parent="window_control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_right = -910.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.156863)
+
+[node name="GridContainer" type="GridContainer" parent="window_control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -237.5
+offset_top = -188.5
+offset_right = 237.5
+offset_bottom = 188.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="best_score_tip" type="Label" parent="window_control/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "BEST SCORE:"
+label_settings = SubResource("LabelSettings_3s78y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="best_score" type="Label" parent="window_control/GridContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme = ExtResource("5_uyr5e")
+theme_override_font_sizes/font_size = 64
+text = "N/A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="best_time_tip" type="Label" parent="window_control/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "BEST TIME:"
+label_settings = SubResource("LabelSettings_3s78y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="best_time" type="Label" parent="window_control/GridContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme = ExtResource("5_uyr5e")
+theme_override_font_sizes/font_size = 64
+text = "N/A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackBtn" type="Button" parent="window_control/GridContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("5_uyr5e")
+theme_override_font_sizes/font_size = 64
+text = "BACK"
+
+[node name="ClearBtn" type="Button" parent="window_control/GridContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("5_uyr5e")
+theme_override_font_sizes/font_size = 64
+text = "CLEAR"
+
+[connection signal="pressed" from="window_control/GridContainer/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="window_control/GridContainer/ClearBtn" to="." method="_on_clear_btn_pressed"]
